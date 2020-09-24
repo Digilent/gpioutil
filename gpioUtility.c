@@ -139,7 +139,10 @@ void printDeviceInfo() {
                         // Information about the dimensions and specifications
                         // Of the gpio controller
                         char dtree_base[100];
-                        sprintf(dtree_base, "/proc/device-tree%s", map_name);
+			if (strncmp(map_name,"/amba_pl/",9))
+				sprintf(dtree_base, "/proc/device-tree/amba_pl/%s", map_name);
+			else
+                        	sprintf(dtree_base, "/proc/device-tree%s", map_name);
 
                         // Get the number of channels
                         char channel_path[100], channel_buf[5];
